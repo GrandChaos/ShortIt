@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>ShortIt</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+    <body>
+        <h3 class="text-center"><b>ShortIt</b></h3>
+        <h5 class="text-center">Сервис для сокращения URL ссылок</h5>
+
+        <form action="#" th:action="@{/ShortIt}" th:object="${URL}" method="post">
+            <div class="row w-50 p-2 mx-auto border bg-light">
+
+                <div th:if="${not stats}" class="mb-3">
+                    <span class="input-group-text">Введите URL для сокращения:</span>
+                    <input type="url" class="form-control" id="url" name="url"  required th:field="*{fullUrl}"/>
+                </div>
+
+                <div th:if="${stats}" class="mb-3">
+                    <span class="input-group-text">Полный URL:</span>
+                    <input type="url" class="form-control" th:value="${URL.fullUrl}" readonly>
+                </div>
+
+                <div th:if="${not stats}" class="mb-3">
+                    <button type="submit" class="btn btn-secondary">Сократить</button>
+                </div>
+
+
+                <div th:if="${done}" class="mb-3">
+                    <span class="input-group-text">Короткий URL:</span>
+                    <input type="url" class="form-control" th:value="${ 'http://localhost:8080/' + URL.shortUrl}" readonly>
+                </div>
+
+                <div th:if="${done and not stats}"  class="mb-3">
+                    <span class="input-group-text">Статистика переходов по ссылке:</span>
+                    <input type="url" class="form-control" th:value="${ 'http://localhost:8080/ShortIt/stats?id=' + URL.id}" readonly>
+                </div>
+
+                <div th:if="${stats}" class="mb-3">
+                    <span class="input-group-text">Количество переходов по ссылке:</span>
+                    <input type="url" class="form-control" th:value="${URL.countClick}" readonly>
+                </div>
+
+            </div>
+        </form>
+    </body>
+</html>
