@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
     <body>
-        <h3 class="text-center"><b>ShortIt</b></h3>
+        <h2 class="text-center"><b>ShortIt</b></h2>
         <h5 class="text-center">Сервис для сокращения URL ссылок</h5>
 
         <form action="#" th:action="@{/ShortIt}" th:object="${URL}" method="post">
@@ -33,13 +33,13 @@
                 </div>
 
                 <div th:if="${done and not stats}"  class="mb-3">
-                    <span class="input-group-text">Статистика переходов по ссылке:</span>
+                    <span class="input-group-text">Статистика переходов доступна по ссылке:</span>
                     <input type="url" class="form-control" th:value="${ 'http://localhost:8080/ShortIt/stats?id=' + URL.id}" readonly>
                 </div>
 
                 <div th:if="${stats}" class="mb-3">
                     <span class="input-group-text">Количество переходов по ссылке:</span>
-                    <input type="url" class="form-control" th:value="${URL.countClick}" readonly>
+                    <input type="url" class="form-control" th:value="${URL.countClicks}" readonly>
                 </div>
 
             </div>

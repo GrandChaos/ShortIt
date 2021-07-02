@@ -58,6 +58,7 @@ public class URLController {
         URL Url = repository.findByShortUrl(shortUrl);
         if (Url != null) {
             Url.incCountClick();
+            repository.save(Url);
             HttpHeaders headers = new HttpHeaders();
             headers.add("Location", Url.getFullUrl());
             return new ResponseEntity<String>(headers, HttpStatus.FOUND);
@@ -68,7 +69,7 @@ public class URLController {
 
     @RequestMapping("ShortIt/stats")
     public String stats(@RequestParam(value = "id", required = true) String id, Model model){
-        URL url = repository.findById(Long.valueOf(id).longValue());
+        URL url = repository.getOne(Long.valueOf(id).longValue());
         if (url != null){
             model.addAttribute("URL", url);
             model.addAttribute("done", true);

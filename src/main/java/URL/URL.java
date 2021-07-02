@@ -13,14 +13,14 @@ public class URL {
 	private Long id;
 	private String fullUrl;
 	private String shortUrl;
-	private int countClick;
+	private int countClicks;
 
 	protected URL() {}
 
 	public URL(String defaultURL, String shortURL) {
 		this.fullUrl = defaultURL;
 		this.shortUrl = shortURL;
-		countClick = 0;
+		countClicks = 0;
 	}
 
 	public Long getId() {
@@ -44,13 +44,13 @@ public class URL {
 		this.shortUrl = shortUrl;
 	}
 
-	public int getCountClick() {
-		return countClick;
+	public int getCountClicks() {
+		return countClicks;
 	}
-	public void setCountClick(int countClick) {
-		this.countClick = countClick;
+	public void setCountClicks(int countClicks) {
+		this.countClicks = countClicks;
 	}
 	public void incCountClick(){
-		countClick++;
+		countClicks++;
 	}
 }
